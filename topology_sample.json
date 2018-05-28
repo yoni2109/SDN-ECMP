@@ -1,0 +1,68 @@
+{
+  "hosts": [
+    {
+      "id": "h1",
+      "ip": "10.0.0.1",
+      "mac": "00:00:00:00:00:01"
+    },
+    {
+      "id": "h2",
+      "ip": "10.0.0.2",
+      "mac": "00:00:00:00:00:02"
+    }
+  ],
+  "switches": [
+    {
+      "id": "c1",
+      "dpid": "00:00:00:00:00:00:0c:01",
+      "adjacent_switches": {"c2": 2, "d1": 3},
+      "adjacent_hosts": {"h1": 1}
+    },
+    {
+      "id": "c2",
+      "next": "-1",
+      "dpid": "00:00:00:00:00:00:0c:02",
+      "adjacent_switches": {"c1": 2, "d1" : 3},
+      "adjacent_hosts": {"h2": 1}
+    },
+    {
+      "id": "d1",
+      "next": "c2",
+      "dpid": "00:00:00:00:00:00:0d:01",
+      "adjacent_switches": {"c1": 1, "c2": 2},
+      "adjacent_hosts": {}
+    }
+    ],
+  "links": [
+    {
+      "node1": "h1",
+      "node2": "c1",
+      "port1": 1,
+      "port2": 1
+    },
+    {
+      "node1": "h2",
+      "node2": "c2",
+      "port1": 1,
+      "port2": 1
+    },
+    {
+      "node1": "c1",
+      "node2": "c2",
+      "port1": 2,
+      "port2": 2
+    },
+    {
+      "node1": "c1",
+      "node2": "d1",
+      "port1": 3,
+      "port2": 1
+    },
+    {
+      "node1": "d1",
+      "node2": "c2",
+      "port1": 2,
+      "port2": 3
+    }
+  ]
+}
