@@ -60,7 +60,10 @@ def init_topo():
         i+=(graph.node[rndnode]['adjacent_hosts'].values())
         if not nx.has_path(graph,h,rndnode):
             graph.add_edge(h,rndnode)
-            graph.node[rndnode]['adjacent_hosts'][graph.node[h]['id']]=max(i)+1
+            if i.__len__() > 0:
+                graph.node[rndnode]['adjacent_hosts'][graph.node[h]['id']]=max(i)+1
+            else:
+                graph.node[rndnode]['adjacent_hosts'][graph.node[h]['id']]=1
     #print graph.node
     network = {}
     network['hosts'] = []
@@ -71,6 +74,25 @@ def init_topo():
         if not graph.node[n]['isHost']:
             network['switches']+=[graph.node[n]]
     network['links'] = []
+    ports = {}
+
+    # ports.values()
+    # port1
+    # port2
+    print graph.edges()
+    print hosts.nodes()
+    for n in graph.edges():
+        print n
+        if n[1] in hosts.nodes():
+            port1 = graph.node[n[0]]['adjacent_hosts'][graph.node[n[1]]['id']]
+        else:
+            port1 = graph.node[n[0]]['adjacent_switches'][graph.node[n[1]]['id']]
+        if n[1] in hosts.nodes():
+            port2 = graph.node[n[1]]['adjacent_hosts'][graph.node[n[0]]['id']]
+        else:
+            port2 = graph.node[n[1]]['adjacent_switches'][graph.node[n[0]]['id']]
+        network['links']+=[{'node1':n[0],'node2':n[1],'port1':port1,'port2':port2}]
+
     
         
 
