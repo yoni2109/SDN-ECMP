@@ -6,9 +6,10 @@ from mininet.cli import CLI
 from mininet.clean import cleanup
 from mininet.link import TCLink
 from mininet.node import UserSwitch, OVSKernelSwitch, OVSSwitch, IVSSwitch
+from topo import init_topo
 
-
-json_data = read_json('topology_sample.json')
+init_topo()
+json_data = read_json('result.json')
 hosts = parse_hosts(json_data)
 switches = parse_switches(json_data)
 links = parse_links(json_data)

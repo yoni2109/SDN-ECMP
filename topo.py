@@ -85,18 +85,16 @@ def init_topo():
         print n
         if n[1] in hosts.nodes():
             port1 = graph.node[n[0]]['adjacent_hosts'][graph.node[n[1]]['id']]
+            port2 = 1
         else:
             port1 = graph.node[n[0]]['adjacent_switches'][graph.node[n[1]]['id']]
-        if n[1] in hosts.nodes():
-            port2 = graph.node[n[1]]['adjacent_hosts'][graph.node[n[0]]['id']]
-        else:
             port2 = graph.node[n[1]]['adjacent_switches'][graph.node[n[0]]['id']]
         network['links']+=[{'node1':n[0],'node2':n[1],'port1':port1,'port2':port2}]
 
     
         
+    with open('result.json', 'w') as fp:
+        json.dump(network, fp)
 
-    print network
-
-init_topo()
+#init_topo()
          
