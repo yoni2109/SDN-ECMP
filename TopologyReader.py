@@ -1,5 +1,5 @@
 from NetworkStructures import *
-import simplejson as json
+import json
 import copy
 
 def read_json(filename):

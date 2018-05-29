@@ -96,5 +96,6 @@ def init_topo():
     with open('result.json', 'w') as fp:
         json.dump(network, fp)
 
+    return graph
 #init_topo()
          
