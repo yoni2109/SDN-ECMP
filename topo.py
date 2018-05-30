@@ -5,7 +5,11 @@ import matplotlib.pyplot as plt
 from networkx.readwrite import json_graph as jg
 import json
 def generate_random_graph():
-    g = nx.erdos_renyi_graph(random.randint(1,10),0.2)
+    i = True
+    while i:
+        g = nx.erdos_renyi_graph(random.randint(1,10),0.5)
+        if nx.is_connected(g):
+            i = False
     #g.name = 'switches'
     #nx.draw(g)
     #plt.show()
@@ -79,10 +83,10 @@ def init_topo():
     # ports.values()
     # port1
     # port2
-    print graph.edges()
-    print hosts.nodes()
+    # print graph.edges()
+    # print hosts.nodes()
     for n in graph.edges():
-        print n
+        # print n
         if n[1] in hosts.nodes():
             port1 = graph.node[n[0]]['adjacent_hosts'][graph.node[n[1]]['id']]
             port2 = 1
@@ -90,12 +94,21 @@ def init_topo():
             port1 = graph.node[n[0]]['adjacent_switches'][graph.node[n[1]]['id']]
             port2 = graph.node[n[1]]['adjacent_switches'][graph.node[n[0]]['id']]
         network['links']+=[{'node1':n[0],'node2':n[1],'port1':port1,'port2':port2}]
-
-    
-        
+    pathes = {}
+    for s in graph.node:
+        pathes[s] = {}
+        for d in graph.node:
+            pathes[s][d] = [p for p in nx.all_shortest_paths(graph,s,d)]
+    nx.all_pairs_shortest_path(graph)
+    with open ('shortest.json','w') as fp:
+        json.dump(pathes,fp)    
     with open('result.json', 'w') as fp:
         json.dump(network, fp)
-
+    with open('graph.json', 'w') as fp:
+        json.dump(graph.node, fp)
+    #print pathes
+    #nx.draw(graph)
+    #plt.show()
     return graph
-#init_topo()
+init_topo()
          
