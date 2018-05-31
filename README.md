@@ -33,7 +33,7 @@ run in mininet 'iperf'
 
 or try pingall
 
-###exiting
+### exiting
 type 'exit' in mininet
 
 combo ctrl+c in the controller
