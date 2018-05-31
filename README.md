@@ -22,6 +22,6 @@ open a new terminal and run : sudo python TopologyBuilder.py
 run in mininet 'iperf'
 or try pingall
 
-###exiting
+### exiting
 type 'exit' in mininet
 combo ctrl+c in the controller

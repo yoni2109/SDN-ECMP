@@ -54,3 +54,5 @@ class Link(object):
         ports = (self.port1 == other.port1 and self.port2 == other.port2)
 
         return nodes and ports
+
+        
