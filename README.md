@@ -2,9 +2,13 @@
 
 ## authors
 Yehonatan Simhon : 30150645
+
 Shai Hood : 304800402
+
 Mark Rabayev : 310356621
+
 Carin Krechmer : 206013856
+
 
 ### running the program
 in order to run the program follow the next steps:
