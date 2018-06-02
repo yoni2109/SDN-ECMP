@@ -120,7 +120,7 @@ class ECMPBalancer(object):
         if packet.type == packet.ARP_TYPE:
 
             arp_packet = packet.find('arp')
-            print 'ARP TYPE'
+
             if arp_packet is not None:
                 if arp_packet.opcode == arp.REQUEST:
                     arp_reply = arp()
